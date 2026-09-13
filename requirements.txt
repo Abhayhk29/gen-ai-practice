@@ -10,3 +10,5 @@ langgraph-checkpoint-postgres
 langgraph-checkpoint-sqlite
 langchain-ollama
 flask
+pydantic
+google-api-python-client
