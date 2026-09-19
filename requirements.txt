@@ -12,3 +12,7 @@ langchain-ollama
 flask
 pydantic
 google-api-python-client
+sounddevice
+soundfile
+openai
+pypdf
