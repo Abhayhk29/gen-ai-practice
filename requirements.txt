@@ -16,3 +16,8 @@ sounddevice
 soundfile
 openai
 pypdf
+langchain-huggingface
+sentence-transformers
+langchain-community
+langchain-unstructured
+langchain-tavily

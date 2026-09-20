@@ -23,33 +23,54 @@ def read_documents_from_directory():
                 "path": str(file.relative_to(directory)),
                 "content": content
             })
+    return documents
 
-    print(documents)
+    # print(documents)
+def create_context(documents):
+    context = ""
+    for doc in documents:
+        context += f'{doc["path"]}:\n{doc["content"]}\n----------------\n'
+    return context
 
+
+documents = read_documents_from_directory()
+
+context = create_context(documents)
+print("Context created from documents:")
+print(context)
 
 # big_string = """
 # This is a long string that contains multiple lines of text.
 # Chant and be happy. ABCD for Devotees A : Association B : Book C : CHanting D : Diet
 # """
 
-# system_prompt = """
-# You are a helpful assistant that answers questions about the company and its products.
-# {big_string}
-# """
+system_prompt = """
+You are a helpful assistant that answers questions about the company and its products.
+{context}
+"""
 
-# messages = [
-#     SystemMessage(content=system_prompt),
-# ]
+messages = [
+    SystemMessage(content=system_prompt),
+]
 
-# user_query = input("Enter your question: ")
-# messages.append(HumanMessage(content=user_query))
+user_query = input("Enter your question: ")
+messages.append(HumanMessage(content=user_query))
 
 
-# llm = ChatGoogleGenerativeAI(
-#     model="gemini-3.6-flash")
+llm = ChatGoogleGenerativeAI(
+    model="gemini-3.6-flash")
 
 
 # response = llm.invoke(messages)
 
 # print(response)
 
+
+while True:
+    user_query = input("Enter your question (or type 'exit' to quit): ")
+    if user_query.lower() == 'exit':
+        break
+    messages.append(HumanMessage(content=user_query))
+    response = llm.invoke(messages)
+    messages.append(response)
+    print(response)
