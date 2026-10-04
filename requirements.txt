@@ -21,3 +21,5 @@ sentence-transformers
 langchain-community
 langchain-unstructured
 langchain-tavily
+langchain-openai
+rich
